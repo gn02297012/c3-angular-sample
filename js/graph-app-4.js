@@ -3,13 +3,10 @@ var graphApp = angular.module('graphApp', ['graphApp.services']);
 graphApp.controller('GraphCtrl', function ($scope,$timeout,dataService) {
 	$scope.chart = null;
 	$scope.config={};
-
 	$scope.config.data=[]
-
 	$scope.config.type1="line";
 	$scope.config.type2="line";
 	$scope.config.keys={"x":"x", "value":["data1","data2"]};
-
 	$scope.keepLoading = true;
 
 	$scope.showGraph = function() {
@@ -40,7 +37,6 @@ graphApp.controller('GraphCtrl', function ($scope,$timeout,dataService) {
 			var data = {};
 			data.keys = $scope.config.keys;
 			data.json = newData;
-			//console.log(data);
 			if (newData.length > 9) {
 				newData = newData.slice(newData.length - 1);
 				data.json = newData;
@@ -48,13 +44,12 @@ graphApp.controller('GraphCtrl', function ($scope,$timeout,dataService) {
 
 			} else {
 				$scope.chart.load(data);
-			}		
-			
+			}
 			$timeout(function(){
 				if ($scope.keepLoading) {
 					$scope.loadNewData()				
 				}
-			}, 1000);			
+			}, 1000);
 		});
 	}
 });
